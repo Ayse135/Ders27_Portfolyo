@@ -1,0 +1,14 @@
+﻿@model string
+@{
+	string isim = ViewBag.kullaniciAdi;
+	List<string> kullanicilar = ViewBag.kullaniciListesi;
+}
+<p>Hoşgeldiniz @isim</p>
+<p>Hoşgeldiniz @ViewBag.kullaniciAdi</p>
+
+<p>Bu sayfa @Model kez tıklandı.</p>
+
+@foreach (var item in kullanicilar)
+{
+	<p>@item</p>
+}

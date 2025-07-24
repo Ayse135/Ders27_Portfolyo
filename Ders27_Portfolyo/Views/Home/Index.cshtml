@@ -1,23 +1,50 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Anasayfa";
     ViewData["BaskaBirKey"] = "Home Page Key2";
 }
 <style>
     .karsilama{
         font-size:40px;
     }
+    #dummyText{
+        color:cadetblue;
+    }
 </style>
 <div class="text-center">
     <h1 class="display-4 karsilama">Hoş geldiniz</h1>
+    <p id="dummyText" style="text-align:left;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pulvinar mattis elit vitae dapibus. Nullam ultrices volutpat quam in gravida. Mauris non ex ut nunc blandit rutrum aliquet eu sapien. Fusce efficitur augue tortor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos (dummy text)</p>
     <p style="color:blue;">Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+@* <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script> *@
+
+<script src="https://www.google.com/recaptcha/api.js?render=6LfN-I0rAAAAAC33HHTGb97Tq0U3dDQT2AvnIlof"></script>
+<script>
+    grecaptcha.ready(function() {
+            grecaptcha.execute('6LfN-I0rAAAAABiKxyhRzrwP0bLU7PyrCb2RSuLt', {action: 'contact'}).then(function(token) {
+            document.getElementById('g-recaptcha-response').value = token;
+        });
+    });
+</script>
 
 @* inline css elemente style="özellik:değer;özellik:değer" şeklinde tanımlanan css'e denir *@
 @* internal css, <style></style> etiketleri içinde ilgili dosyada yazılan css tanımlaması *@
 @* external css link ile css dosyasının kaynağının belirtildiği css tanımlaması *@
 
-<form action="/Home/Privacy">
+
+@* <script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+      document.getElementById("demo-form").submit();
+    }
+</script> *@
+
+
+<form id="demo-form" action="/Home/ContactSave" method="post">
     <div class="mb-3 mt-3">
+        <label class="form-label">Name:</label>
+        <input type="text" class="form-control" placeholder="Enter name" name="name">
+    </div>
+	@* <div class="mb-3 mt-3">
         <label for="email" class="form-label">Email:</label>
         <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
     </div>
@@ -29,12 +56,19 @@
         <label class="form-check-label">
             <input class="form-check-input" type="checkbox" name="remember"> Remember me
         </label>
-    </div>
+    </div> *@
+    <input type="hidden" id="g-recaptcha-response" name="g_recaptcha_response" />
     <button type="submit" class="btn btn-primary">Submit</button>
+@*     <button class="g-recaptcha"
+            data-sitekey="6LfN-I0rAAAAAC33HHTGb97Tq0U3dDQT2AvnIlof"
+            data-callback='onSubmit'
+            data-action='submit'>
+        Submit
+    </button> *@
 </form>
 
 
-
+@* 
 <h1>Multiple DIV Elements</h1>
 
 <div style="background-color:#FFF4A3;">
@@ -53,4 +87,4 @@
     <h2>Rome</h2>
     <p>Rome is the capital city of Italy.</p>
     <p>Rome has over 4 million inhabitants.</p>
-</div>
+</div> *@
